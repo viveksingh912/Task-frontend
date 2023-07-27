@@ -1,0 +1,75 @@
+<div class="my-3 card">
+  <div class="card-header">
+    <h5 class="card-title">{{ todo.title }}</h5>
+  </div>
+  <div class="card-body">
+    <p class="card-text">{{ todo.description }}</p>
+    <div class="row">
+      <div class="col-md-6">
+        <p class="mb-2"><strong>Priority:</strong> {{ todo.priority }}</p>
+      </div>
+      <div class="col-md-6">
+        <p class="mb-2"><strong>Due Date:</strong> {{ todo.dueDate | date: 'MMM d, y' }}</p>
+      </div>
+    </div>
+    <p class="mb-2"><strong>Status:</strong> {{ todo.state }}</p>
+    <div class="d-flex justify-content-between">
+      <div>
+        <button class="btn btn-sm btn-primary mx-1" (click)="openModal(modalContent)">Update</button>
+        <button class="btn btn-sm btn-info ml-2" (click)="showHistory()">History</button>
+      </div>
+      <div>
+        <button class="btn btn-sm btn-danger" (click)="onClick(todo._id)">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal from here -->
+<ng-template #modalContent let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Add a Task</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+  </div>
+  <div class="modal-body">
+    <!-- Place your form inside the modal body -->
+    <form (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" [(ngModel)]="title" id="title" name="title" aria-describedby="emailHelp">
+        <div id="emailHelp" class="form-text">Enter Title</div>
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea class="form-control" [(ngModel)]="description" name="description" id="description" rows="3"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="dueDate" class="form-label">Due Date</label>
+        <input type="date" class="form-control" [(ngModel)]="dueDate" name="dueDate" id="dueDate">
+      </div>
+      <div class="mb-3">
+        <label for="priority" class="form-label">Priority</label>
+        <select class="form-select" [(ngModel)]="priority" name="priority" id="priority">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="state" class="form-label">State</label>
+        <select class="form-select" [(ngModel)]="state" name="state" id="state">
+          <option value="in-progress">In Progress</option>
+          <option value="to-do">To Do</option>
+          <option value="completed">Completed</option>
+        </select>
+      </div>
+      <div class="d-grid gap-2">
+        <!-- <button type="submit" class="btn btn-primary btn-lg">Add Todo</button> -->
+        <button type="submit" class="btn btn-outline-dark" (click)="modal.close('Save click')">Update Todo</button>
+      </div>
+    </form>
+  </div>
+  <!-- <div class="modal-footer">
+  </div> -->
+</ng-template>

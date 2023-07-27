@@ -1,0 +1,67 @@
+Custom CSS for Task History component
+.container.wrapper {
+    padding: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-header {
+    background-color: #007bff;
+  }
+  
+  .card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+    color: #fff;
+  }
+  
+  .card-body {
+    padding: 10px;
+  }
+  
+  .card-text {
+    margin: 0;
+  }
+  
+  .text-muted {
+    color: #888;
+  }
+  
+  /* Add some space between the cards */
+  .mb-3 {
+    margin-bottom: 20px;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 576px) {
+    /* Center the cards on small screens */
+    .card {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    /* Display cards in 2 columns on medium screens */
+    .card-columns {
+      column-count: 2;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    /* Display cards in 3 columns on large screens */
+    .card-columns {
+      column-count: 3;
+    }
+  }
+  

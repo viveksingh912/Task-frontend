@@ -1,0 +1,21 @@
+<div class="container wrapper">
+  <h1 class="mb-4">Task History</h1>
+
+  <div *ngIf="(taskHistory$ | async) as history">
+    <div *ngIf="history.length === 0">
+      <p class="text-muted">No history available for this task.</p>
+    </div>
+    <div *ngFor="let entry of history">
+      <div class="card mb-3">
+        <div class="card-header">
+          <h5 class="card-title mb-0">{{ entry.action }}</h5>
+        </div>
+        <div class="card-body">
+          <p class="card-text mb-0">{{ entry.timestamp | date: 'MMM d, y - h:mm a' }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-sm btn-primary mt-4" routerLink="/">Go Back</button>
+</div>

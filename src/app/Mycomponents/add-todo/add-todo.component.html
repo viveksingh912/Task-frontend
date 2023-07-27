@@ -1,0 +1,29 @@
+<div class="my-3 container">
+  <h4 class="mb-4">Add a Task</h4>
+  <form (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input type="text" class="form-control" [(ngModel)]="title" id="title" name="title" aria-describedby="emailHelp">
+      <div id="emailHelp" class="form-text">Enter Title</div>
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea class="form-control" [(ngModel)]="description" name="description" id="description" rows="3"></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="dueDate" class="form-label">Due Date</label>
+      <input type="date" class="form-control" [(ngModel)]="dueDate" name="dueDate" id="dueDate">
+    </div>
+    <div class="mb-3">
+      <label for="priority" class="form-label">Priority</label>
+      <select class="form-select" [(ngModel)]="priority" name="priority" id="priority">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+    </div>
+    <div class="d-grid gap-2">
+      <button type="submit" class="btn btn-primary btn-lg">Add Todo</button>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,17 @@
+<form class="container">
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" class="form-control"  [(ngModel)]="name" name="name" id="name" aria-describedby="emailHelp">
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input type="email" class="form-control"  [(ngModel)]="email" name="email" id="email" aria-describedby="emailHelp">
+      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" class="form-control" [(ngModel)]="password" name="password" id="password">
+    </div>
+    <button type="submit" class="btn btn-primary" (click)="onSignUpClicked()">Sign Up</button>
+  </form>
