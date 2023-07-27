@@ -27,7 +27,6 @@ export class TodoItemComponent {
     private modalService: NgbModal, // Inject NgbModal
     config: NgbModalConfig // Inject NgbModalConfig
   ) {
-    // customize default values of modals used by this component tree
     config.backdrop = 'static';
     config.keyboard = false;
   }

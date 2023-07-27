@@ -6,24 +6,38 @@
     </button>
   </div>
 
-  <!-- Add the AddTodoComponent conditionally based on showAddTaskForm -->
   <div *ngIf="showAddTaskForm" class="mb-4">
     <app-add-todo></app-add-todo>
   </div>
 
   <h4 class="mb-3">Your Tasks</h4>
-  <div class="d-flex mb-2">
-    <button class="btn btn-sm btn-outline-primary mr-2" (click)="sortByStateFunc()">Sort by Status</button>
-    <button class="btn btn-sm btn-outline-primary mr-2" (click)="sortByDueDateFunc()">Sort by Due Date</button>
-    <button class="btn btn-sm btn-outline-primary" (click)="sortByPriorityFunc()">Sort by Priority</button>
-    
-    <!-- Add the Export to CSV button -->
-    <button class="btn btn-sm btn-outline-primary ml-auto" (click)="exportToCsv()">Export to CSV</button>
+
+  <div class="d-flex justify-content-between flex-wrap mb-2">
+    <div class="d-flex">
+      <span class="mr-2 mt-1">Sort by:</span>
+      <button class="btn btn-sm btn-outline-primary mr-2" (click)="sortByStateFunc()">Status</button>
+      <button class="btn btn-sm btn-outline-primary mr-2" (click)="sortByDueDateFunc()">Due Date</button>
+      <button class="btn btn-sm btn-outline-primary mr-2" (click)="sortByPriorityFunc()">Priority</button>
+    </div>
+    <div class="mt-2 mt-sm-0">
+      <button class="btn btn-sm btn-outline-primary" (click)="exportToCsv()">Export to CSV</button>
+    </div>
   </div>
 
   <div class="accordion">
-    <div *ngFor="let todo of todos$ | async">
-      <app-todo-item [todo]="todo"></app-todo-item>
-    </div>
+    <ng-container *ngIf="(todos$ | async) as todos">
+      <div *ngIf="todos.length > 0; else emptyTodos">
+        <div *ngFor="let todo of todos">
+          <app-todo-item [todo]="todo"></app-todo-item>
+        </div>
+      </div>
+    </ng-container>
   </div>
+
+  <!-- Content to show when todos$ is empty -->
+  <ng-template #emptyTodos>
+    <div class="alert alert-info mt-4">
+      You don't have any tasks yet. Add some tasks to get started!
+    </div>
+  </ng-template>
 </div>

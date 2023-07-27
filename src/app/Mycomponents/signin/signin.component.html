@@ -1,12 +1,13 @@
-<form class="container">
-    <div class="mb-3">
-      <label for="email" class="form-label">Email address</label>
-      <input type="email" class="form-control"  [(ngModel)]="email" name="email" id="email" aria-describedby="emailHelp">
-      <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-    </div>
-    <div class="mb-3">
-      <label for="password" class="form-label">Password</label>
-      <input type="password" class="form-control" [(ngModel)]="password" name="password" id="password">
-    </div>
-    <button type="submit" class="btn btn-primary" (click)="onSignInClicked()">Sign In</button>
-  </form>
+<form class="container needs-validation custom-form" #signupForm="ngForm" (ngSubmit)="onSignInClicked()" novalidate>
+  <div class="mb-3">
+    <label for="email" class="form-label">Email address</label>
+    <input type="email" class="form-control" [(ngModel)]="email" name="email" id="email" required email>
+    <div class="invalid-feedback">Please enter a valid email (e.g., abc@gmail.com).</div>
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" class="form-control" [(ngModel)]="password" name="password" id="password" required>
+    <div class="invalid-feedback">Password is required.</div>
+  </div>
+  <button type="submit" class="btn btn-primary btn-sm btn-block">Sign In</button>
+</form>

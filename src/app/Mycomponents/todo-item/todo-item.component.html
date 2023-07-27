@@ -29,7 +29,7 @@
 <!-- Modal from here -->
 <ng-template #modalContent let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Add a Task</h4>
+    <h4 class="modal-title" id="modal-basic-title">Update Task</h4>
     <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
   </div>
   <div class="modal-body">
@@ -57,7 +57,7 @@
         </select>
       </div>
       <div class="mb-3">
-        <label for="state" class="form-label">State</label>
+        <label for="state" class="form-label">Status</label>
         <select class="form-select" [(ngModel)]="state" name="state" id="state">
           <option value="in-progress">In Progress</option>
           <option value="to-do">To Do</option>
@@ -66,7 +66,7 @@
       </div>
       <div class="d-grid gap-2">
         <!-- <button type="submit" class="btn btn-primary btn-lg">Add Todo</button> -->
-        <button type="submit" class="btn btn-outline-dark" (click)="modal.close('Save click')">Update Todo</button>
+        <button type="submit" class="btn btn-outline-dark" (click)="modal.close('Save click')">Update</button>
       </div>
     </form>
   </div>

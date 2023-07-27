@@ -11,12 +11,11 @@ import { findIndex } from 'rxjs';
 
 export interface TaskState {
   tasks: Task[];
-  // Additional state properties can be added here if needed
+
 }
 
 export const initialState: TaskState = {
   tasks: [],
-  // Initialize other state properties if needed
 };
 
 const taskReducer = createReducer(
@@ -53,13 +52,11 @@ const taskReducer = createReducer(
     const index = state.tasks.findIndex((t) => t._id === task._id);
     console.log(index);
     if (index !== -1) {
-      // Splice modifies the original array, so create a new array instead
       const updatedTasks = [...state.tasks];
       updatedTasks.splice(index, 1, task);
-      // state.tasks.splice(index,1,task)
       return {
         ...state,
-        tasks: updatedTasks, // updatedTasks
+        tasks: updatedTasks, 
       };
     }
 

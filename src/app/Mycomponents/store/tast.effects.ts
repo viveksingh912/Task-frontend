@@ -12,7 +12,7 @@ import { Store, select } from '@ngrx/store';
 
 @Injectable()
 export class TaskEffects {
-  private apiUrl = 'http://localhost:5000/api'; // Replace this with your actual API endpoint
+  private apiUrl = 'http://localhost:5000/api'; 
 
   constructor(
     private actions$: Actions,
@@ -62,9 +62,9 @@ addTask$ = createEffect(() =>
     withLatestFrom(this.store.select(fromAuth.selectToken)),
     mergeMap(([action, authToken]) =>
       this.http.post<Task>(`${this.apiUrl}/tasks`, action.task, {
-        headers: this.getHeaders(authToken), // Use the fetched auth token in the headers
+        headers: this.getHeaders(authToken), 
       }).pipe(
-        // tap(task => console.log('Task added:', task)), // Add the console.log statement here
+        // tap(task => console.log('Task added:', task)), 
         map(task => TaskActions.addTaskSuccess({ task })),
         catchError(error => of(TaskActions.addTaskFailure({ error: error.message })))
       )

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import * as fromTodos from '../store/task.reducer';
-import { Observable, map } from 'rxjs';
+import { Observable, auditTime, map } from 'rxjs';
 import { Task } from '../models/task.model';
 import { loadTasks } from '../store/task.actions';
 
@@ -36,32 +36,43 @@ export class TodosComponent {
         map((tasks) => [...tasks].sort((a, b) => stateOrder[b.state] - stateOrder[a.state]))
       );
     } else {
-      this.todos$ = this.store.pipe(select(fromTodos.selectTask));
+      const stateOrder = { 'in-progress': 1, 'to-do': 2, 'completed': 3 }; 
+      this.todos$ = this.todos$.pipe(
+        map((tasks) => [...tasks].sort((a, b) => stateOrder[b.state] - stateOrder[a.state]))
+      );
     }
   }
 
-  // Function to sort tasks by due date
   sortByDueDateFunc() {
     this.sortByDueDate = !this.sortByDueDate;
     if (this.sortByDueDate) {
       this.todos$ = this.todos$.pipe(
-        map((tasks) => [...tasks].sort((a, b) => {
-          if (a.dueDate instanceof Date && b.dueDate instanceof Date) {
-            return a.dueDate.getTime() - b.dueDate.getTime();
-          } else if (a.dueDate instanceof Date) {
-            return -1; 
-          } else if (b.dueDate instanceof Date) {
-            return 1; 
-          } else {
-            return 0; 
-          }
-        }))
+        map((tasks) => {
+          const updatedTasks = tasks.map((task) => ({
+            ...task,
+            dueDate: typeof task.dueDate === 'string' ? new Date(task.dueDate) : task.dueDate,
+          }));
+          return updatedTasks.sort((a, b) => {
+            if (a.dueDate instanceof Date && b.dueDate instanceof Date) {
+              return a.dueDate.getTime() - b.dueDate.getTime();
+            } else if (a.dueDate instanceof Date && (!b.dueDate || !(b.dueDate instanceof Date))) {
+              return -1; 
+            } else if (b.dueDate instanceof Date && (!a.dueDate || !(a.dueDate instanceof Date))) {
+              return 1; 
+            } else {
+              return 0; 
+            }
+          });
+        })
       );
     } else {
       // Reset sorting
       this.todos$ = this.store.pipe(select(fromTodos.selectTask));
     }
   }
+  
+  
+  
 
   sortByPriorityFunc() {
     this.sortByPriority = !this.sortByPriority;
@@ -71,7 +82,10 @@ export class TodosComponent {
         map((tasks) => [...tasks].sort((a, b) => priorityOrder[b.priority] - priorityOrder[a.priority]))
       );
     } else {
-      this.todos$ = this.store.pipe(select(fromTodos.selectTask));
+      const priorityOrder = { 'high': 1, 'medium': 2, 'low': 3 }; 
+      this.todos$ = this.todos$.pipe(
+        map((tasks) => [...tasks].sort((a, b) => priorityOrder[b.priority] - priorityOrder[a.priority]))
+      );
     }
   }
   exportToCsv() {
