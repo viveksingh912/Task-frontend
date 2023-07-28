@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { Todo } from 'src/app/Todo';
 import { Task } from '../models/task.model';
 import { Store } from '@ngrx/store';
 import * as  fromTodos from '../store/task.reducer';
@@ -17,12 +16,12 @@ export class AddTodoComponent {
   dueDate: Date;
   priority: 'low' | 'medium' | 'high';
   state:'to-do'|'in-progress'|'completed';
-  @Output() addTodo: EventEmitter<Task> = new EventEmitter();
+  @Output() todoHide: EventEmitter<void>=new EventEmitter();
   constructor(private store:Store<fromTodos.TaskState>,private router:Router ){
 
   }
   
-  onSubmit() {
+  onClick() {
     const task = {
       title: this.title,
       description: this.description,
@@ -30,14 +29,11 @@ export class AddTodoComponent {
       priority: this.priority,
       state:this.state
     };
-    // if(!(task.state))
-    // task.priority='low';
     this.store.dispatch(todoAction.addTask({task}));
     this.title='';
     this.description='';
     this.dueDate=new Date;
     this.priority='low';
-    this.router.navigateByUrl('/');
-    // this.addTodo.emit(task);
+    this.todoHide.emit();
   }
 }

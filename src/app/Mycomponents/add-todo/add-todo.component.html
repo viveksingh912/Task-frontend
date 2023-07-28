@@ -1,6 +1,6 @@
 <div class="my-3 container">
   <h4 class="mb-4">Add a Task</h4>
-  <form (ngSubmit)="onSubmit()">
+  <form >
     <div class="mb-3">
       <label for="title" class="form-label">Title</label>
       <input type="text" class="form-control" [(ngModel)]="title" id="title" name="title" aria-describedby="emailHelp">
@@ -23,7 +23,7 @@
       </select>
     </div>
     <div class="d-grid gap-2">
-      <button type="submit" class="btn btn-primary btn-lg">Add Task</button>
+      <button type="submit" class="btn btn-primary btn-lg" (click)="onClick()">Add Task</button>
     </div>
   </form>
 </div>

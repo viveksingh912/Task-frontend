@@ -14,6 +14,7 @@ import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap'; // Import
 export class TodoItemComponent {
   @Input() todo: Task;
   @ViewChild('modalContent') modalContent: any;
+ 
   title: string;
   description: string;
   dueDate: Date;
