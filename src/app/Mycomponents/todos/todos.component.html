@@ -1,7 +1,10 @@
+
+
 <div class="container wrapper">
   <div class="d-flex justify-content-between align-items-center mb-4">
     <h1 class="text-primary">Task Management System</h1>
-    <button class="btn btn-sm" [ngClass]="{'btn-primary': !showAddTaskForm, 'btn-danger': showAddTaskForm}" (click)="toggleAddTaskForm()">
+    <button class="btn btn-sm" [ngClass]="{'btn-primary': !showAddTaskForm, 'btn-danger': showAddTaskForm}"
+      (click)="toggleAddTaskForm()">
       {{ showAddTaskForm ? 'Close' : 'Add Task' }}
     </button>
   </div>
@@ -14,13 +17,23 @@
 
   <div class="d-flex justify-content-between flex-wrap mb-2">
     <div class="d-flex">
-      <span class="mr-2 mt-1">Sort by:</span>
-      <button class="btn btn-sm btn-outline-primary mr-2" (click)="sortByStateFunc()">Status</button>
-      <button class="btn btn-sm btn-outline-primary mr-2" (click)="sortByDueDateFunc()">Due Date</button>
-      <button class="btn btn-sm btn-outline-primary mr-2" (click)="sortByPriorityFunc()">Priority</button>
+      <div class="row">
+        <div class="col">
+          <div ngbDropdown class="d-inline-block">
+            <button type="button" class="btn btn-sm btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+              Sort By
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button ngbDropdownItem (click)="onSort('state')">Status</button>
+              <button ngbDropdownItem (click)="onSort('dueDate')">Due Date</button>
+              <button ngbDropdownItem (click)="onSort('priority')">Priority</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="mt-2 mt-sm-0">
-      <button class="btn btn-sm btn-outline-primary" (click)="exportToCsv()">Export to CSV</button>
+    <div class="mt-sm-0">
+      <button class="btn btn-sm btn-outline-primary"  (click)="exportToCsv()">Export to CSV</button>
     </div>
   </div>
 
@@ -36,8 +49,11 @@
 
   <!-- Content to show when todos$ is empty -->
   <ng-template #emptyTodos>
-    <div class="alert alert-info mt-4">
-      You don't have any tasks yet. Add some tasks to get started!
+    <div class="empty-todos-message alert alert-info mt-4" style="text-align: center;">
+      <i class="bi bi-emoji-smile" style="font-size: 2rem;"></i>
+      <p style="font-size: 1.2rem; margin-top: 0.5rem;">
+        You don't have any tasks yet. Add some tasks to get started!
+      </p>
     </div>
   </ng-template>
 </div>

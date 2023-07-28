@@ -21,12 +21,12 @@ export class AuthEffects {
         return this.http.post<{ token: string }>(endpoint, action.credentials).pipe(
           map((response) => AuthActions.loginSuccess({ auth_token: response.token })),
           catchError((error) => {
-            console.error("API call error:", error); // Log the error if it occurs
-            return of(AuthActions.loginFailure({ err: error.message }));
+            console.error("API call error:", error.error.error); 
+            return of(AuthActions.loginFailure({ err: error.error.error }));
           }),
-          tap(() => {
-            console.log("API call completed successfully!"); // Add your console.log statement here
-          })
+          // tap(() => {
+          //   console.log("API call completed successfully!"); 
+          // })
         );
       })
     )
@@ -37,10 +37,8 @@ export class AuthEffects {
       this.actions$.pipe(
         ofType(AuthActions.loginSuccess),
         tap((action) => {
-          // Log the auth token and navigate to the desired URL on login success
-          // console.log("Login successful. Token:", action.auth_token);
           localStorage.setItem('auth_token',action.auth_token);
-          this.router.navigateByUrl('/'); // Replace "/dashboard" with your desired URL
+          this.router.navigateByUrl('/');
         })
       ),
     { dispatch: false } // Add this line to prevent dispatching any action from this effect

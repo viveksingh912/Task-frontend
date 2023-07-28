@@ -23,16 +23,16 @@ export class TaskHistoryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this line is executed to make sure that the data in the selcted task remains always availb
+    // this line is executed to make sure that the data in the selected task remains always available
     this.store.dispatch(loadTasks());
     this.route.params.subscribe((params) => {
-
-      this.todoId = params['id']; // 'id' is the parameter name defined in the route configuration
+      this.todoId = params['id']; 
       // console.log(this.todoId);
       this.taskHistory$ = this.store.select(selectTask).pipe(
         map((tasks: Task[]) => {
           const selectedTask = tasks.find((task) => task._id === this.todoId);
-          return selectedTask?.history || [];
+          const history = selectedTask?.history || [];
+          return [...history].reverse(); ;
         })
       );
     });

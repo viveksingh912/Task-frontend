@@ -1,7 +1,7 @@
 /* .wrapper{
     background-color: #d4a0bb;
 } */
-/* Custom styles for the container */
+
 .wrapper {
     max-width: 800px;
     margin: 0 auto;
@@ -11,34 +11,33 @@
     border-radius: 10px;
   }
   
-  /* Custom styles for the header */
+
   h1 {
     font-size: 32px;
     font-weight: bold;
   }
   
-  /* Custom styles for the "Add Task" button */
+
   button.btn {
     font-size: 16px;
     font-weight: bold;
     border-radius: 5px;
   }
   
-  /* Custom styles for the "Your Tasks" section */
+  
   h4 {
     font-size: 24px;
     margin-bottom: 10px;
   }
   
-  /* Custom styles for the sorting buttons */
+  
   button.btn-outline-primary {
     font-size: 14px;
     font-weight: bold;
     border-radius: 5px;
-    margin-right: 10px;
   }
   
-  /* Custom styles for the todo items */
+  
   .app-todo-item {
     margin-bottom: 10px;
     padding: 10px;
@@ -48,20 +47,20 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   }
   
-  /* Custom styles for the todo item title */
+  
   .app-todo-item h5 {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 5px;
   }
   
-  /* Custom styles for the todo item description */
+  
   .app-todo-item p {
     font-size: 16px;
     margin-bottom: 10px;
   }
   
-  /* Custom styles for the delete button */
+  
   .app-todo-item button {
     font-size: 14px;
     font-weight: bold;
@@ -69,20 +68,25 @@
     margin-top: 5px;
   }
   
-  /* Custom styles for the accordion */
+  
   .accordion {
     margin-top: 20px;
   }
   
-  /* Custom styles for the footer */
+  
   .footer {
     text-align: center;
     margin-top: 20px;
     font-size: 14px;
     color: #666;
   }
+  .empty-todos-message {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 5px;
+  }
   
-  /* Responsive styles */
   @media screen and (max-width: 768px) {
     .wrapper {
       padding: 10px;
@@ -110,6 +114,14 @@
   
     .footer {
       font-size: 12px;
+    }
+    /* #csv{
+      margin-bottom: 5px;
+    } */
+    button.btn {
+      font-size: 12px;
+      font-weight: bold;
+      border-radius: 3px;
     }
   }
   

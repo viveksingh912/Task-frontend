@@ -1,38 +1,44 @@
 <div>
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-      <!-- Brand logo -->
       <a class="navbar-brand" routerLink="/">Todos List</a>
-      
-      <!-- Toggle button for collapsed menu on smaller screens -->
+
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      
+
       <!-- Collapsible menu items -->
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <!-- Home link -->
           <li class="nav-item">
-            <a class="nav-link" routerLink="/" [class.active]="isLinkActive('/')">Home</a>
+            <a class="nav-link" routerLink="/" [class.active]="isLinkActive('/')">
+              <i class="bi bi-house-door me-1"></i> Home
+            </a>
           </li>
-          
+
           <!-- Sign Up link -->
           <li class="nav-item">
-            <a *ngIf="!(jwtToken$ | async)" class="nav-link" routerLink="/signup" [class.active]="isLinkActive('/signup')">Sign Up</a>
+            <a *ngIf="!(jwtToken$ | async)" class="nav-link" routerLink="/signup" [class.active]="isLinkActive('/signup')">
+              <i class="bi bi-person-plus me-1"></i> Sign Up
+            </a>
           </li>
-          
+
           <!-- Sign In link -->
           <li class="nav-item">
-            <a *ngIf="!(jwtToken$ | async)" class="nav-link" routerLink="/signin" [class.active]="isLinkActive('/signin')">Sign In</a>
+            <a *ngIf="!(jwtToken$ | async)" class="nav-link" routerLink="/signin" [class.active]="isLinkActive('/signin')">
+              <i class="bi bi-box-arrow-in-right me-1"></i> Sign In
+            </a>
           </li>
         </ul>
-        
+
         <!-- Sign Out button -->
         <ul class="navbar-nav mb-2 mb-lg-0">
           <li class="nav-item">
-            <button *ngIf="(jwtToken$ | async)" class="btn btn-sm btn-outline-light" (click)="onSignOutclick()">Sign Out</button>
+            <button *ngIf="(jwtToken$ | async)" class="btn btn-sm btn-outline-light" (click)="onSignOutclick()">
+              <i class="bi bi-box-arrow-right me-1"></i> Sign Out
+            </button>
           </li>
         </ul>
       </div>

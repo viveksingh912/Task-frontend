@@ -15,6 +15,7 @@ export class AppComponent {
   }
   // this is a observable
   jwtToken$=this.store.select(fromAuth.selectToken);
+  // error$=this.store.select(fromAuth.selctError);
   onSignOutclick(){
     localStorage.removeItem('auth_token');
     this.store.dispatch(logOut());
