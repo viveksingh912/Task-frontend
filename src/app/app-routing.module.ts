@@ -8,7 +8,8 @@ import { AddTodoComponent } from './Mycomponents/add-todo/add-todo.component';
 import { TaskHistoryComponent } from './Mycomponents/taskhistory/taskhistory.component';
 const routes: Routes = [
   // canactivate=> used to if user is logged in then only redirect to the home component
-  { path: '', component: TodosComponent,canActivate:[AuthGuard] },
+  // canActivate:[AuthGuard]
+  { path: '', component: TodosComponent, },
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'history/:id', component: TaskHistoryComponent },
