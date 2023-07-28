@@ -12,7 +12,7 @@ import { Store, select } from '@ngrx/store';
 
 @Injectable()
 export class TaskEffects {
-  private apiUrl = 'http://localhost:5000/api'; 
+  private apiUrl = 'https://task-backend-tau.vercel.app/api'; 
 
   constructor(
     private actions$: Actions,

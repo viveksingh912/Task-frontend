@@ -17,7 +17,7 @@ export class AuthEffects {
       switchMap((action) => {
         const { email, password, name } = action.credentials;
         // seleting endpoint based on the provided  credentials
-        const endpoint = name ? "http://localhost:5000/api/auth/createuser" : "http://localhost:5000/api/auth/login";
+        const endpoint = name ? "https://task-backend-tau.vercel.app/api/auth/createuser" : "https://task-backend-tau.vercel.app/api/auth/login";
         return this.http.post<{ token: string }>(endpoint, action.credentials).pipe(
           map((response) => AuthActions.loginSuccess({ auth_token: response.token })),
           catchError((error) => {
