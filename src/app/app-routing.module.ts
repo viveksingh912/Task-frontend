@@ -9,7 +9,7 @@ import { TaskHistoryComponent } from './Mycomponents/taskhistory/taskhistory.com
 const routes: Routes = [
   // canactivate=> used to if user is logged in then only redirect to the home component
   // canActivate:[AuthGuard]
-  { path: '', component: TodosComponent, },
+  { path: '', component: TodosComponent, canActivate:[AuthGuard]},
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'history/:id', component: TaskHistoryComponent },
